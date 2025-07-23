@@ -9,11 +9,12 @@ import EditEmployee from "./Edit";
 import { getEmployeesReducer, getUserReducer } from "../../redux/reducer/user";
 import { IconButton, Tooltip } from "@mui/material";
 import { DeleteOutline, EditOutlined } from "@mui/icons-material";
-import { PiTrashLight } from "react-icons/pi";
+import { PiProhibitLight, PiTrashLight } from "react-icons/pi";
 import { IoOpenOutline } from "react-icons/io5";
-import { CiEdit } from "react-icons/ci";
+import { CiEdit, CiUnlock } from "react-icons/ci";
 import Filter from "./Filter";
 import User from "./User";
+import EnterPassword from "./EnterPassword";
 
 const Employees = memo(() => {
   /////////////////////////////////////// VARIABLES ////////////////////////////////////////
@@ -91,6 +92,16 @@ const Employees = memo(() => {
               className="cursor-pointer text-green-500 text-[23px] hover:text-green-600"
             />
           </Tooltip>
+          {/* <Tooltip arrow placement="top" title={params.row?.status ? "Block" : "Unblock"}>
+            {" "}
+            {
+              params.row?.status
+                ?
+                <PiProhibitLight onClick={() => handleBlockUser(params.row)} className="cursor-pointer text-amber-500 text-[23px] hover:text-amber-600" />
+                :
+                <CiUnlock onClick={() => handleUnblockUser(params.row)} className="cursor-pointer text-amber-500 text-[23px] hover:text-amber-600" />
+            }
+          </Tooltip> */}
         </div>
       ),
     },
@@ -103,6 +114,8 @@ const Employees = memo(() => {
   const [openFilters, setOpenFilters] = useState("");
   const [openView, setOpenViewk] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
+  const [openStatusModel, setOpenStatusModel] = useState(false);
+  const [type, setType] = useState("Unblock");
 
   /////////////////////////////////////// USE EFFECTS ////////////////////////////////////
   useEffect(() => {
@@ -110,6 +123,7 @@ const Employees = memo(() => {
       dispatch(getEmployees());
     }
   }, []);
+  
   useEffect(() => {
     if (!isFiltered) {
       dispatch(getEmployeesReducer(allEmployees));
@@ -117,7 +131,17 @@ const Employees = memo(() => {
   }, [isFiltered]);
 
   /////////////////////////////////////// FUNCTIONS /////////////////////////////////////
-  const hanldeOpenViewModal = (taskId) => {
+  const handleBlockUser = (user) => {
+    setSelectedUserId(user._id);
+    setType("Block");
+    setOpenStatusModel(true);
+  };
+  const handleUnblockUser = (user) => {
+    setSelectedUserId(user._id);
+    setType("Unblock");
+    setOpenStatusModel(true);
+  };
+  const handleOpenViewModal = (taskId) => {
     setSelectedUserId(taskId);
     setOpenViewk(true);
   };
@@ -135,6 +159,7 @@ const Employees = memo(() => {
       <EditEmployee open={openEditModal} setOpen={setOpenEditModal} />
       <DeleteEmployee open={openDeleteModal} setOpen={setOpenDeleteModal} userId={selectedUserId} />
       <User open={openView} setOpen={setOpenViewk} />
+      <EnterPassword open={openStatusModel} setOpen={setOpenStatusModel} userId={selectedUserId} type={type} />
 
       <Topbar
         openFilters={openFilters}

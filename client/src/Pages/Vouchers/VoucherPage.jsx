@@ -102,7 +102,7 @@ const VoucherPage = ({ }) => {
               <th className="text-center border-y-[1px] border-x-[1px] border-black bg-[#dddddd] h-[2rem] w-[13rem] pb-4">Payment Date</th>
             </tr>
             <tr className='w-full' >
-              <td className="text-center border-b-[1px] border-x-[1px] border-black h-[2rem] w-[13rem] capitalize pb-4">{voucher?.type} {voucher?.type == "cheque" || voucher?.type == "card" ? `(${voucher?.cheque})` : null}</td>
+              <td className="text-center border-b-[1px] border-x-[1px] border-black h-[2rem] w-[13rem] capitalize pb-4">{voucher?.type} {voucher?.type == "cheque" || voucher?.type == "online" ? `(${voucher?.cheque})` : null}</td>
               <td className="text-center border-b-[1px]  border-black h-[2rem] w-[13rem] pb-4">{voucher?.total}</td>
               <td className="text-center border-b-[1px] border-x-[1px] border-black h-[2rem] w-[13rem] pb-4">{voucher?.dueDate}</td>
             </tr>
@@ -134,9 +134,9 @@ const VoucherPage = ({ }) => {
               <th className="h-[2rem] w-[13rem] ">Remaining</th>
             </tr>
             <tr className='w-full flex justify-around mt-[8px] ' >
-              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">{voucher?.total}</td>
-              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">{voucher?.paid}</td>
-              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">{voucher?.remained}</td>
+              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">PKR {voucher?.total}</td>
+              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">PKR {voucher?.paid}</td>
+              <td className="text-center border-[1px] border-black h-[2rem] min-w-[30%] max-w-[30%] pb-4">PKR {voucher?.remained}</td>
             </tr>
           </table>
         </div>

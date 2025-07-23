@@ -101,9 +101,6 @@ const Navbar = ({ setShowSidebar, showSidebar, tasks, notifications }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log("Tasks", tasks);
-  console.log("Notifications", notifications);
-
   /////////////////////////////////////////// STATES ////////////////////////////////////////////////
   const [date, setDate] = useState(new Date());
   const [openPasswordChange, setOpenPasswordChange] = useState(false);

@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPayments } from "../../redux/action/cashbook";
 import { CiCreditCard1 } from "react-icons/ci";
 
-const Cards = () => {
+const Cards = ({ refreshCards }) => {
 
-  const { payments } = useSelector((state) => state.cashbook);
+  const { payments, cashbooks } = useSelector((state) => state.cashbook);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPayments());
-  }, []);
+  }, [cashbooks]);
 
   return (
     <div>

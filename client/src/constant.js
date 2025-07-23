@@ -1,8 +1,8 @@
 export const baseURL = 'https://server.alkarimestatebuilder.com/api/v1'
 export const rootURL = 'https://server.alkarimestatebuilder.com/'
 
-// export const baseURL = 'http://localhost:4000/api/v1'
-// export const rootURL = 'http://localhost:4000'
+//export const baseURL = 'http://localhost:4000/api/v1'
+//export const rootURL = 'http://localhost:4000'
 
 export const pakistanCities = [
   "Abbottabad",

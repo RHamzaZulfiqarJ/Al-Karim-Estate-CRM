@@ -75,7 +75,11 @@ function Sales() {
       headerClassName: "super-app-theme--header",
       headerName: "Type of Payment",
       width: 200,
-      renderCell: (params) => <div className="font-primary capitalize">{params.row?.paymentType == "cheque" ? `Cheque No.: ${params.row?.number}` : params.row?.paymentType == "card" ? `Card No.: ${params.row?.number}` : params.row?.paymentType}</div>,
+      renderCell: (params) => (
+        <Tooltip title={params.row?.paymentType == "cheque" ? `Cheque No.: ${params.row?.number}` : params.row?.paymentType == "card" ? `Card No.: ${params.row?.number}` : params.row?.paymentType} placement="top" arrow>
+          <div className="font-primary capitalize">{params.row?.paymentType == "cheque" ? `Cheque No.: ${params.row?.number}` : params.row?.paymentType == "card" ? `Card No.: ${params.row?.number}` : params.row?.paymentType}</div>
+        </Tooltip>
+      ),
     },
     {
       field: "action",

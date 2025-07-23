@@ -51,7 +51,7 @@ const Topbar = ({ search, setSearch }) => {
                   name="search"
                   value={search}
                   onChange={(e) => handleSearch(e.target.value)}
-                  placeholder="Search Employees"
+                  placeholder="Search Voucher"
                   startAdornment={
                     <InputAdornment position="start">
                       <PiMagnifyingGlass className="text-[25px]" />

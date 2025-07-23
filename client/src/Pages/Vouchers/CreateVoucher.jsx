@@ -33,21 +33,22 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
   const navigate = useNavigate();
   const initialVoucherState = {
     issuingDate: "",
+    branch: "",
+    allocatedTo: "",
     dueDate: "",
     clientName: "",
     CNIC: "",
     phone: "",
-    degree: "",
-    degreeName: "",
-    country: "",
-    project: "Null",
-    major: "",
-    visa: "",
+    email: "",
     type: "",
+    cheque: "",
+    propertyType: "",
+    area: "",
+    project: "",
     total: "",
     paid: "",
     remained: "",
-    note: ""
+    note: "",
   };
 
   ////////////////////////////////////// STATES //////////////////////////////////////
@@ -68,20 +69,22 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
     e.preventDefault();
     const {
       issuingDate,
+      branch,
+      allocatedTo,
       dueDate,
       clientName,
+      CNIC,
       phone,
+      email,
       type,
       cheque,
+      propertyType,
+      area,
+      project,
       total,
-      degreeName,
-      note,
       paid,
-      degree,
-      country,
-      visa,
       remained,
-      major,
+      note,
     } = voucherData;
 
     dispatch(createVoucher(voucherData, setOpen, projects));
@@ -223,9 +226,9 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                     value={voucherData.area}
                     onChange={(e) => handleChange("area", e.target.value)}
                     size="small"
-                    type="number"
+                    type="text"
                     fullWidth
-                    placeholder="Area in Marla"
+                    placeholder="Enter Area"
                   />
                 </td>
               </tr>
@@ -244,7 +247,7 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                 </td>
               </tr>
               <tr>
-                <td className="pb-4 text-lg">Porperty Type </td>
+                <td className="pb-4 text-lg">Property Type </td>
                 <td className="pb-4">
                   <CFormSelect
                     value={voucherData.propertyType}
@@ -270,14 +273,13 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                     <option value={""}>None</option>
                     <option value={"cash"}>Cash</option>
                     <option value={"cheque"}>Cheque</option>
-                    <option value={"card"}>Card</option>
                     <option value={"online"}>Online</option>
                   </CFormSelect>
                 </td>
               </tr>
-              {voucherData.type === "cheque" || voucherData.type === "card" ? (
+              {voucherData.type === "cheque" || voucherData.type === "online" ? (
                 <tr>
-                  <td className="pb-4 text-lg">{voucherData.type === "cheque" ? "Cheque No." : "Card No."} </td>
+                  <td className="pb-4 text-lg">{voucherData.type === "cheque" ? "Cheque No." : "Online Transaction ID"} </td>
                   <td className="pb-4">
                     <TextField
                       name="cheque"
@@ -300,6 +302,9 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                     size="small"
                     type="text"
                     fullWidth
+                    InputProps={
+                      { startAdornment: <span className="text-gray-500">PKR&nbsp;</span> }
+                    }
                   />
                 </td>
               </tr>
@@ -313,6 +318,9 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                     size="small"
                     type="text"
                     fullWidth
+                    InputProps={
+                      { startAdornment: <span className="text-gray-500">PKR&nbsp;</span> }
+                    }
                   />
                 </td>
               </tr>
@@ -327,6 +335,9 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
                     size="small"
                     type="text"
                     fullWidth
+                    InputProps={
+                      { startAdornment: <span className="text-gray-500">PKR&nbsp;</span> }
+                    }
                   />
                 </td>
               </tr>
